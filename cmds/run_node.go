@@ -75,9 +75,19 @@ func (cmd *RunCommand) Run(pctx context.Context) error {
 
 	_ = pps.POK(launch.PNameStorage).PostAddOK(ps.Name("check-hold"), cmd.pCheckHold)
 	_ = pps.POK(launch.PNameStates).
+		PreAddOK(launch.PNameProposerSelector, launch.PProposerSelector).
+		PreAddOK(launch.PNameOperationProcessorsMap, POperationProcessorsMap).
+		PreAddOK(launch.PNameNetworkHandlers, PNetworkHandlers).
+		PreAddOK(launch.PNameNodeInConsensusNodesFunc, launch.PNodeInConsensusNodesFunc).
+		PreAddOK(launch.PNameProposalProcessors, launch.PProposalProcessors).
+		PreAddOK(launch.PNameBallotStuckResolver, launch.PBallotStuckResolver).
+		PostAddOK(launch.PNamePatchLastConsensusNodesWatcher, launch.PPatchLastConsensusNodesWatcher).
 		PreAddOK(ps.Name("when-new-block-saved-in-consensus-state-func"), cmd.pWhenNewBlockSavedInConsensusStateFunc).
-		PreAddOK(ps.Name("when-new-block-confirmed-func"), cmd.pWhenNewBlockConfirmed)
-	_ = pps.POK(launch.PNameStates).
+		PreAddOK(ps.Name("when-new-block-saved-in-syncing-state-func"), cmd.pWhenNewBlockSavedInSyncingStateFunc).
+		PreAddOK(ps.Name("when-new-block-confirmed-func"), cmd.pWhenNewBlockConfirmed).
+		PostAddOK(launch.PNameStatesSetHandlers, launch.PStatesSetHandlers).
+		PostAddOK(launch.PNameWatchDesign, launch.PWatchDesign).
+		PostAddOK(launch.PNamePatchMemberlist, launch.PPatchMemberlist).
 		PreAddOK(PNameOperationProcessorsMap, POperationProcessorsMap)
 	_ = pps.POK(PNameDigest).
 		PostAddOK(PNameDigestAPIHandlers, cmd.pDigestAPIHandlers)
@@ -251,6 +261,55 @@ func (cmd *RunCommand) pWhenNewBlockConfirmed(pctx context.Context) (context.Con
 
 	return context.WithValue(pctx,
 		launch.WhenNewBlockConfirmedFuncContextKey, f,
+	), nil
+}
+
+func (cmd *RunCommand) pWhenNewBlockSavedInSyncingStateFunc(pctx context.Context) (context.Context, error) {
+	var log *logging.Logging
+	var db isaac.Database
+	var di *digest.Digester
+
+	if err := util.LoadFromContextOK(pctx,
+		launch.LoggingContextKey, &log,
+		launch.CenterDatabaseContextKey, &db,
+	); err != nil {
+		return pctx, err
+	}
+
+	if err := util.LoadFromContext(pctx, ContextValueDigester, &di); err != nil {
+		return pctx, err
+	}
+
+	var f func(height base.Height)
+	if di != nil {
+		g := cmd.whenBlockSaved(db, di)
+
+		f = func(height base.Height) {
+			g(pctx)
+			l := log.Log().With().Interface("height", height).Logger()
+
+			if cmd.Hold.IsSet() && height == cmd.Hold.Height() {
+				l.Debug().Msg("will be stopped by hold")
+				cmd.exitf(errHoldStop.Call())
+
+				return
+			}
+		}
+	} else {
+		f = func(height base.Height) {
+			l := log.Log().With().Interface("height", height).Logger()
+
+			if cmd.Hold.IsSet() && height == cmd.Hold.Height() {
+				l.Debug().Msg("will be stopped by hold")
+				cmd.exitf(errHoldStop.Call())
+
+				return
+			}
+		}
+	}
+
+	return context.WithValue(pctx,
+		launch.WhenNewBlockSavedInSyncingStateFuncContextKey, f,
 	), nil
 }
 

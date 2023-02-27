@@ -74,17 +74,17 @@ func DefaultRunPS() *ps.PS {
 		PostAddOK(launch.PNameCallbackBroadcaster, launch.PCallbackBroadcaster).
 		PostAddOK(launch.PNameSuffrageVoting, launch.PSuffrageVoting)
 
-	_ = pps.POK(launch.PNameStates).
-		PreAddOK(launch.PNameProposerSelector, launch.PProposerSelector).
-		PreAddOK(launch.PNameOperationProcessorsMap, POperationProcessorsMap).
-		PreAddOK(launch.PNameNetworkHandlers, PNetworkHandlers).
-		PreAddOK(launch.PNameNodeInConsensusNodesFunc, launch.PNodeInConsensusNodesFunc).
-		PreAddOK(launch.PNameProposalProcessors, launch.PProposalProcessors).
-		PreAddOK(launch.PNameBallotStuckResolver, launch.PBallotStuckResolver).
-		PostAddOK(launch.PNamePatchLastConsensusNodesWatcher, launch.PPatchLastConsensusNodesWatcher).
-		PostAddOK(launch.PNameStatesSetHandlers, launch.PStatesSetHandlers).
-		PostAddOK(launch.PNameWatchDesign, launch.PWatchDesign).
-		PostAddOK(launch.PNamePatchMemberlist, launch.PPatchMemberlist)
+	// _ = pps.POK(launch.PNameStates).
+	// 	PreAddOK(launch.PNameProposerSelector, launch.PProposerSelector).
+	// 	PreAddOK(launch.PNameOperationProcessorsMap, POperationProcessorsMap).
+	// 	PreAddOK(launch.PNameNetworkHandlers, PNetworkHandlers).
+	// 	PreAddOK(launch.PNameNodeInConsensusNodesFunc, launch.PNodeInConsensusNodesFunc).
+	// 	PreAddOK(launch.PNameProposalProcessors, launch.PProposalProcessors).
+	// 	PreAddOK(launch.PNameBallotStuckResolver, launch.PBallotStuckResolver).
+	// 	PostAddOK(launch.PNamePatchLastConsensusNodesWatcher, launch.PPatchLastConsensusNodesWatcher).
+	// 	PostAddOK(launch.PNameStatesSetHandlers, launch.PStatesSetHandlers).
+	// 	PostAddOK(launch.PNameWatchDesign, launch.PWatchDesign).
+	// 	PostAddOK(launch.PNamePatchMemberlist, launch.PPatchMemberlist)
 
 	return pps
 }
