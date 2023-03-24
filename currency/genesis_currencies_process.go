@@ -38,6 +38,9 @@ func (op GenesisCurrencies) Process(
 	for i := range fact.cs {
 		c := fact.cs[i]
 		c.genesisAccount = newAddress
+		if c.amount.big != c.aggregate {
+			return nil, nil, errors.Errorf("currency design amount and aggregate not matched in genesis currency")
+		}
 		cs[i] = c
 
 		st, err := notExistsState(StateKeyCurrencyDesign(c.amount.Currency()), "currency", getStateFunc)
