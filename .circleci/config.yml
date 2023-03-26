@@ -3,7 +3,7 @@ version: 2
 defaults: &defaults
   docker:
     - image: circleci/golang:1.16
-  working_directory: /go/src/github.com/spikeekips/mitum-currency
+  working_directory: /go/src/github.com/ProtoconNet/mitum-currency
 
 workspace: &workspace
   attach_workspace:
@@ -30,7 +30,7 @@ jobs:
           root: /
           paths:
             - go/pkg/mod/
-            - go/src/github.com/spikeekips/mitum-currency
+            - go/src/github.com/ProtoconNet/mitum-currency
 
   lint:
     <<: *defaults
@@ -57,7 +57,7 @@ jobs:
          command: >
             for i in $(go list ./...);
             do
-                n=$(echo $i | sed -e "s@github.com/spikeekips/mitum-currency@.@g")
+                n=$(echo $i | sed -e "s@github.com/ProtoconNet/mitum-currency@.@g")
                 echo "> testing" $n
                 go test -race -tags "test" -v -timeout 10m $n -run .
                 e=$?

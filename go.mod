@@ -1,16 +1,15 @@
-module github.com/spikeekips/mitum-currency
+module github.com/ProtoconNet/mitum-currency
 
 go 1.19
 
-replace github.com/spikeekips/mitum => /workspace/mitum
+replace github.com/spikeekips/mitum => github.com/ProtoconNet/mitum2
 
 require (
+	github.com/ProtoconNet/mitum2 v0.0.0-20230326052938-2e0cafe4343d
 	github.com/alecthomas/kong v0.7.1
 	github.com/arl/statsviz v0.5.1
 	github.com/bluele/gcache v0.0.2
 	github.com/btcsuite/btcd/btcec/v2 v2.3.2
-	github.com/btcsuite/btcd/btcutil v1.1.3
-	github.com/btcsuite/btcd/chaincfg/chainhash v1.0.2
 	github.com/btcsuite/btcutil v1.0.3-0.20201208143702-a53e38424cce
 	github.com/ethereum/go-ethereum v1.11.5
 	github.com/gorilla/handlers v1.5.1
@@ -36,6 +35,8 @@ require (
 	github.com/armon/go-metrics v0.4.1 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
 	github.com/beevik/ntp v0.3.0 // indirect
+	github.com/btcsuite/btcd/btcutil v1.1.3 // indirect
+	github.com/btcsuite/btcd/chaincfg/chainhash v1.0.2 // indirect
 	github.com/bytedance/sonic v1.7.0 // indirect
 	github.com/cenkalti/backoff/v3 v3.2.2 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect

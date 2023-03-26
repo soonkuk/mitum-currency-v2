@@ -6,16 +6,16 @@ info:
     This is API description of digest service of mitum-currency.
   contact:
     name: Spike^ekipS
-    url: https://github.com/spikeekips/mitum-currency
+    url: https://github.com/ProtoconNet/mitum-currency
     email: spikeekips@gmail.com
   license:
     name: GPL-3.0
-    url: https://github.com/spikeekips/mitum-currency/blob/master/LICENSE
+    url: https://github.com/ProtoconNet/mitum-currency/blob/master/LICENSE
   version: 0.0.1
 
 externalDocs:
   description: Find out more about mitum-currency
-  url: 'https://github.com/spikeekips/mitum-currency'
+  url: 'https://github.com/ProtoconNet/mitum-currency'
 
 servers:
 - url: https://localhost:54322
@@ -989,7 +989,7 @@ components:
           example: "failed to sign"
         type:
           type: string
-          example: "https://github.com/spikeekips/mitum-currency/problems/others"
+          example: "https://github.com/ProtoconNet/mitum-currency/problems/others"
         detail:
           type: string
           example: "invalid privatekey"

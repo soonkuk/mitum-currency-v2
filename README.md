@@ -2,10 +2,10 @@
 
 [![CircleCI](https://img.shields.io/circleci/project/github/spikeekips/mitum-currency/master.svg?style=flat-square&logo=circleci&label=circleci&cacheSeconds=60)](https://circleci.com/gh/spikeekips/mitum-currency/tree/master)
 [![Documentation](https://readthedocs.org/projects/mitum-currency-doc/badge/?version=master)](https://mitum-currency-doc.readthedocs.io/en/latest/?badge=master)
-[![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://pkg.go.dev/github.com/spikeekips/mitum-currency?tab=overview)
-[![Go Report Card](https://goreportcard.com/badge/github.com/spikeekips/mitum-currency)](https://goreportcard.com/report/github.com/spikeekips/mitum-currency)
+[![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://pkg.go.dev/github.com/ProtoconNet/mitum-currency?tab=overview)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ProtoconNet/mitum-currency)](https://goreportcard.com/report/github.com/ProtoconNet/mitum-currency)
 [![codecov](https://codecov.io/gh/spikeekips/mitum-currency/branch/master/graph/badge.svg)](https://codecov.io/gh/spikeekips/mitum-currency)
-[![](https://tokei.rs/b1/github/spikeekips/mitum-currency?category=lines)](https://github.com/spikeekips/mitum-currency)
+[![](https://tokei.rs/b1/github/spikeekips/mitum-currency?category=lines)](https://github.com/ProtoconNet/mitum-currency)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/spikeekips/mitum-currency.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/spikeekips/mitum-currency/alerts/)
 
 *mitum-currency* is the cryptocurrency case of mitum model, based on
